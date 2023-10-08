@@ -28,6 +28,12 @@ app.get('/api/notes/:id', (req, res) => {
   res.json(savedNotes[Number(req.params.id)]);
 });
 
+// default GET route (if the above get route doesnt match then this will be default)
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, 'index.html'))
+);
+
+
 // Wildcard route to direct users to a 404 page
 // app.get('*', (req, res) =>
 //   res.sendFile(path.join(__dirname, 'public/pages/404.html'))
