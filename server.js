@@ -22,6 +22,12 @@ app.get('/api/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/db/db.json'))
 );
 
+// GET Route for /api/notes/:id  (GET note by id)
+app.get('/api/notes/:id', (req, res) => {
+  let savedNotes = JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
+  res.json(savedNotes[Number(req.params.id)]);
+});
+
 // Wildcard route to direct users to a 404 page
 // app.get('*', (req, res) =>
 //   res.sendFile(path.join(__dirname, 'public/pages/404.html'))
